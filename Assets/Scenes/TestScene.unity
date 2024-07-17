@@ -118,6 +118,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &28004834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7248416947590498666, guid: 314891a8406f0004cb70d2ab1f848ce8, type: 3}
+  m_PrefabInstance: {fileID: 1088564177}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &75233825
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +212,14 @@ PrefabInstance:
     - target: {fileID: 301392852711113789, guid: e9c02ff081c97cc44b03a3a869b04503, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489630195046023662, guid: e9c02ff081c97cc44b03a3a869b04503, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489630195046023662, guid: e9c02ff081c97cc44b03a3a869b04503, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2261260680305517142, guid: e9c02ff081c97cc44b03a3a869b04503, type: 3}
       propertyPath: m_Pivot.x
@@ -333,7 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPrefabs:
   - menu: 0
-    prefab: {fileID: 0}
+    prefab: {fileID: 28004834}
     hasInitialized: 0
 --- !u!4 &213128446
 Transform:
