@@ -124,6 +124,17 @@ public class SocketConnection {
                     GameEntities.GoldController.SetGold(gold);
                 }
 
+                if (int.TryParse(data.Data[2], out int language))
+                {
+                    GameEntities.ProfilePopup.SetLanguage(language);
+                }
+
+                AchievementsServerList achievementsData = JsonHelper.CreateFromJson<AchievementsServerList>(data.Data[3]);
+                foreach (AchievementServer achievement in achievementsData.list)
+                {
+                    GameEntities.Achievements.achievementsMade[achievement.code] = achievement.number;
+                }
+
                 GameEntities.GameController.OnUserDataSet();
             }
         }

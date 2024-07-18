@@ -52,6 +52,19 @@ public class GameEntities {
         }
     }
 
+    private static Achievements achievements;
+    public static Achievements Achievements
+    {
+        get
+        {
+            if (achievements == null)
+            {
+                achievements = new Achievements();
+            }
+            return achievements;
+        }
+    }
+
     private static InfoPopup infoPopup;
     public static InfoPopup InfoPopup {
         get {
@@ -59,6 +72,19 @@ public class GameEntities {
                 infoPopup = new InfoPopup();
             }
             return infoPopup;
+        }
+    }
+
+    private static ProfilePopup profilePopup;
+    public static ProfilePopup ProfilePopup
+    {
+        get
+        {
+            if (profilePopup == null)
+            {
+                profilePopup = new ProfilePopup();
+            }
+            return profilePopup;
         }
     }
 }

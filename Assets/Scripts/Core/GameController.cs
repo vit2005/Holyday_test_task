@@ -67,6 +67,7 @@ public class GameController : MonoBehaviour {
                     GameObject hitGameObject = hit.collider.gameObject; //banana game object
                     GameEntities.GoldController.AddGold();
                     GameEntities.SocketConnection.GetGold();
+                    GameEntities.SocketConnection.AddAchievementProgress((int)Achievement.BananasClicked, 1);
                     Destroy(hitGameObject);
                 }
             }
@@ -77,6 +78,9 @@ public class GameController : MonoBehaviour {
 
         GameObject.Find(canvasPath + "infoButton").GetComponent<Button>().onClick.AddListener(() => {
             GameEntities.InfoPopup.OpenPopup();
+        });
+        GameObject.Find(canvasPath + "playerAvatar").GetComponent<Button>().onClick.AddListener(() => {
+            GameEntities.ProfilePopup.OpenPopup();
         });
 
         GameObject.Find(menusPath + "upgrades/upgrade (0)/upgradeButton").GetComponent<Button>().onClick.AddListener(() => {
@@ -146,4 +150,5 @@ public class GameController : MonoBehaviour {
 
 public enum MenuName {
     InfoPopup = 0,
+    ProfilePopup = 1,
 }

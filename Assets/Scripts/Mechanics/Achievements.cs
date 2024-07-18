@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class Achievements {
 
@@ -71,12 +72,30 @@ public class Achievements {
     };
 
     public static readonly Dictionary<Achievement, List<int>> achievementMilestones = new Dictionary<Achievement, List<int>>() {
-        { Achievement.BananasClicked,       bananaClicks },
-        { Achievement.BananaUpgrades,       bananaUpgrades },
+        { Achievement.BananasClicked,  bananaClicks },
+        { Achievement.BananaUpgrades,  bananaUpgrades },
+    };
+
+    public Dictionary<Achievement, int> achievementsMade = new Dictionary<Achievement, int>() {
+        { Achievement.BananasClicked,  0 },
+        { Achievement.BananaUpgrades,  0 },
     };
 }
 
 public enum Achievement { 
     BananasClicked,
     BananaUpgrades
+}
+
+[Serializable]
+public class AchievementsServerList
+{
+    public List<AchievementServer> list = new List<AchievementServer>();
+}
+
+[Serializable]
+public class AchievementServer
+{
+    public Achievement code;
+    public int number;
 }
