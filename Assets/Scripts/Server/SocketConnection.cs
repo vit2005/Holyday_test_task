@@ -49,7 +49,7 @@ public class SocketConnection {
 
             isConnectedToSocket = true;
 
-            GetUserData(false);
+            GetUserData(true);
 
             GameEntities.GameController.StartCoroutine(ReceiveMessages());
         }
@@ -136,8 +136,17 @@ public class SocketConnection {
     /// Used at the start of the game to retrieve user's progress and info
     /// </summary>
     /// <param name="message"></param>
-    public void GetUserData(bool WithLanguageAndAchievements = false) {
+    public void GetUserData(bool WithLanguageAndAchievements = true) {
         SendSocketMessage(ComposeSocketMessage(FunctionsSent.GetUserData.ToString(), WithLanguageAndAchievements.ToString()));
+    }
+
+    /// <summary>
+    /// Changing language
+    /// </summary>
+    /// <param name="message"></param>
+    public void ChangeLanguage(int languageIndex)
+    {
+        SendSocketMessage(ComposeSocketMessage(FunctionsSent.ChangeLanguage.ToString(), languageIndex.ToString()));
     }
 
     /// <summary>
@@ -154,6 +163,15 @@ public class SocketConnection {
     /// <param name="message"></param>
     public void BananaUpgrade(Upgrade Upgrade) {
         SendSocketMessage(ComposeSocketMessage(FunctionsSent.Upgrade.ToString(), ((int)Upgrade).ToString()));
+    }
+
+    /// <summary>
+    /// Total number of bananas clicked and total number of upgrades made
+    /// </summary>
+    /// <param name="message"></param>
+    public void AddAchievementProgress(int achievementIndex, int extraProgress)
+    {
+        SendSocketMessage(ComposeSocketMessage(FunctionsSent.AddAchievementProgress.ToString(), achievementIndex.ToString(), extraProgress.ToString()));
     }
 
     /// <summary>
