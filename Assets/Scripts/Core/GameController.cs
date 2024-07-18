@@ -56,6 +56,7 @@ public class GameController : MonoBehaviour {
                 {
                     GameObject hitGameObject = hit.collider.gameObject; //banana game object
                     GameEntities.GoldController.AddGold();
+                    GameEntities.SocketConnection.GetGold();
                     Destroy(hitGameObject);
                 }
             }
