@@ -28,18 +28,28 @@ public class GameController : MonoBehaviour {
     private Vector4 bananaSpawnEdges = Vector4.zero;
     private const int spawnPosModifier = 200;
 
+    private float _previousWidth;
+    private float _previousHeight;
+
     public void Start() {
         
         foreach (UIData menuPrefab in menuPrefabs) {
             allUI.Add(menuPrefab);
         }
 
+        StartCoroutine(GameEntities.SocketConnection.ConnectToSocket());
+    }
+
+    private void RefreshBoundaries()
+    {
+        if (_previousWidth == Screen.width && _previousHeight == Screen.height) return;
+        _previousWidth = Screen.width;
+        _previousHeight = Screen.height;
+
         Vector3 minPosition = Camera.main.ScreenToWorldPoint(new Vector3(spawnPosModifier, spawnPosModifier));
         Vector3 maxPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width - spawnPosModifier, Screen.height - spawnPosModifier));
 
         bananaSpawnEdges = new Vector4(minPosition.x, minPosition.y, maxPosition.x, maxPosition.y);
-
-        StartCoroutine(GameEntities.SocketConnection.ConnectToSocket());
     }
 
     public void Update() {
@@ -93,6 +103,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void SpawnBanana() {
+        RefreshBoundaries();
         GameObject newBanana = GameObject.Instantiate(bananaPrefab, new Vector2(UnityEngine.Random.Range(bananaSpawnEdges.x, bananaSpawnEdges.z), UnityEngine.Random.Range(bananaSpawnEdges.y, bananaSpawnEdges.w)), Quaternion.identity, null);
         newBanana.SetActive(true);
     }
