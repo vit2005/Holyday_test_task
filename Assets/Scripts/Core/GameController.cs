@@ -65,6 +65,7 @@ public class GameController : MonoBehaviour {
                 if (hit.collider) //Something was hit
                 {
                     GameObject hitGameObject = hit.collider.gameObject; //banana game object
+                    GameEntities.Achievements.achievementsMade[Achievement.BananasClicked]++;
                     GameEntities.GoldController.AddGold();
                     GameEntities.SocketConnection.GetGold();
                     GameEntities.SocketConnection.AddAchievementProgress((int)Achievement.BananasClicked, 1);

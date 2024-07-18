@@ -14,8 +14,9 @@ public class Upgrades {
             upgradesMade[Upgrade]++;
             GameObject.Find(GameController.menusPath + "upgrades/upgrade (" + (int)Upgrade + ")/upgradeButton/upgradeCost/quantity").GetComponent<TextMeshProUGUI>().text = GetUpgradeCost(Upgrade).ToString();
             GameObject.Find(GameController.menusPath + "upgrades/upgrade (" + (int)Upgrade + ")/upgradeResult/quantity").GetComponent<TextMeshProUGUI>().text = (Upgrade == Upgrade.BananaGold ? "+" : "-") + GameEntities.Upgrades.GetUpgradeEffect(Upgrade);
-            GameEntities.GoldController.RemoveGold(upgradeCosts[Upgrade][upgradesMade[Upgrade] - 1]);
 
+            GameEntities.Achievements.achievementsMade[Achievement.BananaUpgrades]++;
+            GameEntities.GoldController.RemoveGold(upgradeCosts[Upgrade][upgradesMade[Upgrade] - 1]);
             GameEntities.SocketConnection.BananaUpgrade(Upgrade);
 
             if (CheckIfUpgradeMaxed(Upgrade)) {
